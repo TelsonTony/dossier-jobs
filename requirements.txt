@@ -1,0 +1,4 @@
+# Pinned so a poisoned new release can't slip in; Dependabot proposes updates.
+requests==2.34.2
+openpyxl==3.1.5
+PyNaCl==1.6.2

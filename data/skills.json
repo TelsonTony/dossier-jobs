@@ -1,0 +1,1562 @@
+{
+ "version": 1,
+ "skills": [
+  {
+   "name": "Java",
+   "aliases": []
+  },
+  {
+   "name": "Python",
+   "aliases": []
+  },
+  {
+   "name": "JavaScript",
+   "aliases": [
+    "JS"
+   ]
+  },
+  {
+   "name": "TypeScript",
+   "aliases": [
+    "TS"
+   ]
+  },
+  {
+   "name": "Kotlin",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Swift",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Objective-C",
+   "aliases": []
+  },
+  {
+   "name": "C++",
+   "aliases": [
+    "cpp"
+   ]
+  },
+  {
+   "name": "C#",
+   "aliases": [
+    "csharp"
+   ]
+  },
+  {
+   "name": "Go",
+   "aliases": [
+    "Golang"
+   ],
+   "cs": true
+  },
+  {
+   "name": "Rust",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Ruby",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "PHP",
+   "aliases": []
+  },
+  {
+   "name": "Scala",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Elixir",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Erlang",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Haskell",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Clojure",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Dart",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "MATLAB",
+   "aliases": []
+  },
+  {
+   "name": "Perl",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Lua",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Julia",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Groovy",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Bash",
+   "aliases": [
+    "Shell scripting"
+   ]
+  },
+  {
+   "name": "PowerShell",
+   "aliases": []
+  },
+  {
+   "name": "SQL",
+   "aliases": []
+  },
+  {
+   "name": "NoSQL",
+   "aliases": []
+  },
+  {
+   "name": "GraphQL",
+   "aliases": []
+  },
+  {
+   "name": "HTML",
+   "aliases": [
+    "HTML5"
+   ]
+  },
+  {
+   "name": "CSS",
+   "aliases": [
+    "CSS3"
+   ]
+  },
+  {
+   "name": "Sass",
+   "aliases": [
+    "SCSS"
+   ]
+  },
+  {
+   "name": "Solidity",
+   "aliases": []
+  },
+  {
+   "name": "COBOL",
+   "aliases": []
+  },
+  {
+   "name": "Fortran",
+   "aliases": []
+  },
+  {
+   "name": "VBA",
+   "aliases": []
+  },
+  {
+   "name": "Assembly",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "React",
+   "aliases": [
+    "React.js",
+    "ReactJS"
+   ]
+  },
+  {
+   "name": "React Native",
+   "aliases": []
+  },
+  {
+   "name": "Angular",
+   "aliases": [
+    "AngularJS"
+   ]
+  },
+  {
+   "name": "Vue",
+   "aliases": [
+    "Vue.js",
+    "VueJS"
+   ],
+   "cs": true
+  },
+  {
+   "name": "Svelte",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Next.js",
+   "aliases": [
+    "NextJS"
+   ]
+  },
+  {
+   "name": "Nuxt",
+   "aliases": []
+  },
+  {
+   "name": "Redux",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "jQuery",
+   "aliases": []
+  },
+  {
+   "name": "Tailwind",
+   "aliases": [
+    "Tailwind CSS"
+   ],
+   "cs": true
+  },
+  {
+   "name": "Bootstrap",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Flutter",
+   "aliases": []
+  },
+  {
+   "name": "Jetpack Compose",
+   "aliases": []
+  },
+  {
+   "name": "SwiftUI",
+   "aliases": []
+  },
+  {
+   "name": "UIKit",
+   "aliases": []
+  },
+  {
+   "name": "Android",
+   "aliases": []
+  },
+  {
+   "name": "iOS",
+   "aliases": []
+  },
+  {
+   "name": "Xamarin",
+   "aliases": []
+  },
+  {
+   "name": "Ionic",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Electron",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "WebAssembly",
+   "aliases": [
+    "Wasm"
+   ]
+  },
+  {
+   "name": "Three.js",
+   "aliases": []
+  },
+  {
+   "name": "D3.js",
+   "aliases": [
+    "D3"
+   ]
+  },
+  {
+   "name": "Node.js",
+   "aliases": [
+    "NodeJS",
+    "Node"
+   ],
+   "cs": true
+  },
+  {
+   "name": "Express",
+   "aliases": [
+    "Express.js"
+   ],
+   "cs": true
+  },
+  {
+   "name": "NestJS",
+   "aliases": []
+  },
+  {
+   "name": "Django",
+   "aliases": []
+  },
+  {
+   "name": "Flask",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "FastAPI",
+   "aliases": []
+  },
+  {
+   "name": "Spring",
+   "aliases": [
+    "Spring Framework"
+   ],
+   "cs": true
+  },
+  {
+   "name": "Spring Boot",
+   "aliases": []
+  },
+  {
+   "name": "Hibernate",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": ".NET",
+   "aliases": [
+    "dotnet"
+   ]
+  },
+  {
+   "name": "ASP.NET",
+   "aliases": []
+  },
+  {
+   "name": "Ruby on Rails",
+   "aliases": [
+    "Rails"
+   ],
+   "cs": true
+  },
+  {
+   "name": "Laravel",
+   "aliases": []
+  },
+  {
+   "name": "Symfony",
+   "aliases": []
+  },
+  {
+   "name": "Phoenix",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "gRPC",
+   "aliases": []
+  },
+  {
+   "name": "REST APIs",
+   "aliases": [
+    "REST API",
+    "RESTful",
+    "REST"
+   ]
+  },
+  {
+   "name": "SOAP",
+   "aliases": []
+  },
+  {
+   "name": "Microservices",
+   "aliases": []
+  },
+  {
+   "name": "WebSockets",
+   "aliases": []
+  },
+  {
+   "name": "OAuth",
+   "aliases": []
+  },
+  {
+   "name": "JWT",
+   "aliases": []
+  },
+  {
+   "name": "Kafka",
+   "aliases": [
+    "Apache Kafka"
+   ]
+  },
+  {
+   "name": "RabbitMQ",
+   "aliases": []
+  },
+  {
+   "name": "Celery",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Redis",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Elasticsearch",
+   "aliases": [
+    "Elastic"
+   ],
+   "cs": true
+  },
+  {
+   "name": "OpenSearch",
+   "aliases": []
+  },
+  {
+   "name": "Solr",
+   "aliases": []
+  },
+  {
+   "name": "PostgreSQL",
+   "aliases": [
+    "Postgres"
+   ]
+  },
+  {
+   "name": "MySQL",
+   "aliases": []
+  },
+  {
+   "name": "MariaDB",
+   "aliases": []
+  },
+  {
+   "name": "SQLite",
+   "aliases": []
+  },
+  {
+   "name": "Oracle",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "SQL Server",
+   "aliases": [
+    "MSSQL"
+   ]
+  },
+  {
+   "name": "MongoDB",
+   "aliases": []
+  },
+  {
+   "name": "Cassandra",
+   "aliases": []
+  },
+  {
+   "name": "DynamoDB",
+   "aliases": []
+  },
+  {
+   "name": "Couchbase",
+   "aliases": []
+  },
+  {
+   "name": "Neo4j",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Snowflake",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "BigQuery",
+   "aliases": []
+  },
+  {
+   "name": "Redshift",
+   "aliases": []
+  },
+  {
+   "name": "Databricks",
+   "aliases": []
+  },
+  {
+   "name": "ClickHouse",
+   "aliases": []
+  },
+  {
+   "name": "Supabase",
+   "aliases": []
+  },
+  {
+   "name": "Firebase",
+   "aliases": []
+  },
+  {
+   "name": "AWS",
+   "aliases": [
+    "Amazon Web Services"
+   ]
+  },
+  {
+   "name": "Azure",
+   "aliases": [
+    "Microsoft Azure"
+   ]
+  },
+  {
+   "name": "GCP",
+   "aliases": [
+    "Google Cloud",
+    "Google Cloud Platform"
+   ]
+  },
+  {
+   "name": "Docker",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Kubernetes",
+   "aliases": [
+    "K8s"
+   ],
+   "cs": true
+  },
+  {
+   "name": "Helm",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Terraform",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Ansible",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Puppet",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Chef",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Pulumi",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "CloudFormation",
+   "aliases": []
+  },
+  {
+   "name": "Serverless",
+   "aliases": []
+  },
+  {
+   "name": "Lambda",
+   "aliases": [
+    "AWS Lambda"
+   ],
+   "cs": true
+  },
+  {
+   "name": "Linux",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Unix",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Nginx",
+   "aliases": []
+  },
+  {
+   "name": "Apache",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "CI/CD",
+   "aliases": [
+    "CICD",
+    "Continuous Integration"
+   ]
+  },
+  {
+   "name": "Jenkins",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "GitHub Actions",
+   "aliases": []
+  },
+  {
+   "name": "GitLab CI",
+   "aliases": []
+  },
+  {
+   "name": "CircleCI",
+   "aliases": []
+  },
+  {
+   "name": "Travis CI",
+   "aliases": []
+  },
+  {
+   "name": "Argo CD",
+   "aliases": [
+    "ArgoCD"
+   ]
+  },
+  {
+   "name": "Git",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "GitHub",
+   "aliases": []
+  },
+  {
+   "name": "GitLab",
+   "aliases": []
+  },
+  {
+   "name": "Bitbucket",
+   "aliases": []
+  },
+  {
+   "name": "Prometheus",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Grafana",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Datadog",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Splunk",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "New Relic",
+   "aliases": []
+  },
+  {
+   "name": "Sentry",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "ELK",
+   "aliases": []
+  },
+  {
+   "name": "OpenTelemetry",
+   "aliases": []
+  },
+  {
+   "name": "Istio",
+   "aliases": []
+  },
+  {
+   "name": "Vault",
+   "aliases": [
+    "HashiCorp Vault"
+   ],
+   "cs": true
+  },
+  {
+   "name": "Machine Learning",
+   "aliases": [
+    "ML"
+   ]
+  },
+  {
+   "name": "Deep Learning",
+   "aliases": []
+  },
+  {
+   "name": "NLP",
+   "aliases": [
+    "Natural Language Processing"
+   ]
+  },
+  {
+   "name": "Computer Vision",
+   "aliases": []
+  },
+  {
+   "name": "LLM",
+   "aliases": [
+    "LLMs",
+    "Large Language Models"
+   ]
+  },
+  {
+   "name": "Generative AI",
+   "aliases": [
+    "GenAI"
+   ]
+  },
+  {
+   "name": "PyTorch",
+   "aliases": []
+  },
+  {
+   "name": "TensorFlow",
+   "aliases": []
+  },
+  {
+   "name": "Keras",
+   "aliases": []
+  },
+  {
+   "name": "scikit-learn",
+   "aliases": [
+    "sklearn"
+   ]
+  },
+  {
+   "name": "Pandas",
+   "aliases": []
+  },
+  {
+   "name": "NumPy",
+   "aliases": []
+  },
+  {
+   "name": "SciPy",
+   "aliases": []
+  },
+  {
+   "name": "Spark",
+   "aliases": [
+    "Apache Spark",
+    "PySpark"
+   ],
+   "cs": true
+  },
+  {
+   "name": "Hadoop",
+   "aliases": []
+  },
+  {
+   "name": "Airflow",
+   "aliases": [
+    "Apache Airflow"
+   ],
+   "cs": true
+  },
+  {
+   "name": "dbt",
+   "aliases": []
+  },
+  {
+   "name": "Kafka Streams",
+   "aliases": []
+  },
+  {
+   "name": "Flink",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "MLOps",
+   "aliases": []
+  },
+  {
+   "name": "Hugging Face",
+   "aliases": []
+  },
+  {
+   "name": "LangChain",
+   "aliases": []
+  },
+  {
+   "name": "RAG",
+   "aliases": []
+  },
+  {
+   "name": "OpenCV",
+   "aliases": []
+  },
+  {
+   "name": "Jupyter",
+   "aliases": []
+  },
+  {
+   "name": "Tableau",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Power BI",
+   "aliases": [
+    "PowerBI"
+   ]
+  },
+  {
+   "name": "Looker",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Excel",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Statistics",
+   "aliases": []
+  },
+  {
+   "name": "A/B Testing",
+   "aliases": []
+  },
+  {
+   "name": "Data Analysis",
+   "aliases": []
+  },
+  {
+   "name": "Data Engineering",
+   "aliases": []
+  },
+  {
+   "name": "Data Modeling",
+   "aliases": []
+  },
+  {
+   "name": "ETL",
+   "aliases": []
+  },
+  {
+   "name": "Data Visualization",
+   "aliases": []
+  },
+  {
+   "name": "Selenium",
+   "aliases": [
+    "Selenium WebDriver"
+   ],
+   "cs": true
+  },
+  {
+   "name": "Appium",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Playwright",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Cypress",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Puppeteer",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "WebdriverIO",
+   "aliases": []
+  },
+  {
+   "name": "TestNG",
+   "aliases": []
+  },
+  {
+   "name": "JUnit",
+   "aliases": []
+  },
+  {
+   "name": "pytest",
+   "aliases": []
+  },
+  {
+   "name": "Mocha",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Jest",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Jasmine",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Cucumber",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "BDD",
+   "aliases": []
+  },
+  {
+   "name": "TDD",
+   "aliases": []
+  },
+  {
+   "name": "Postman",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "JMeter",
+   "aliases": []
+  },
+  {
+   "name": "Gatling",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "LoadRunner",
+   "aliases": []
+  },
+  {
+   "name": "k6",
+   "aliases": []
+  },
+  {
+   "name": "REST Assured",
+   "aliases": [
+    "RestAssured"
+   ]
+  },
+  {
+   "name": "SoapUI",
+   "aliases": []
+  },
+  {
+   "name": "Karate",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Robot Framework",
+   "aliases": []
+  },
+  {
+   "name": "Espresso",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "XCUITest",
+   "aliases": []
+  },
+  {
+   "name": "Test Automation",
+   "aliases": []
+  },
+  {
+   "name": "Manual Testing",
+   "aliases": []
+  },
+  {
+   "name": "Regression Testing",
+   "aliases": []
+  },
+  {
+   "name": "Performance Testing",
+   "aliases": []
+  },
+  {
+   "name": "Load Testing",
+   "aliases": []
+  },
+  {
+   "name": "API Testing",
+   "aliases": []
+  },
+  {
+   "name": "Mobile Testing",
+   "aliases": []
+  },
+  {
+   "name": "Security Testing",
+   "aliases": []
+  },
+  {
+   "name": "Accessibility Testing",
+   "aliases": []
+  },
+  {
+   "name": "Unit Testing",
+   "aliases": []
+  },
+  {
+   "name": "Integration Testing",
+   "aliases": []
+  },
+  {
+   "name": "Test Planning",
+   "aliases": []
+  },
+  {
+   "name": "QA",
+   "aliases": [
+    "Quality Assurance"
+   ]
+  },
+  {
+   "name": "SDET",
+   "aliases": []
+  },
+  {
+   "name": "BrowserStack",
+   "aliases": []
+  },
+  {
+   "name": "Sauce Labs",
+   "aliases": []
+  },
+  {
+   "name": "Allure",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Charles Proxy",
+   "aliases": []
+  },
+  {
+   "name": "Fiddler",
+   "aliases": []
+  },
+  {
+   "name": "Agile",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Scrum",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Kanban",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Jira",
+   "aliases": []
+  },
+  {
+   "name": "Confluence",
+   "aliases": []
+  },
+  {
+   "name": "SAFe",
+   "aliases": []
+  },
+  {
+   "name": "Waterfall",
+   "aliases": []
+  },
+  {
+   "name": "Project Management",
+   "aliases": []
+  },
+  {
+   "name": "Product Management",
+   "aliases": []
+  },
+  {
+   "name": "Stakeholder Management",
+   "aliases": []
+  },
+  {
+   "name": "Roadmapping",
+   "aliases": []
+  },
+  {
+   "name": "OKRs",
+   "aliases": []
+  },
+  {
+   "name": "Lean",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Six Sigma",
+   "aliases": []
+  },
+  {
+   "name": "PMP",
+   "aliases": []
+  },
+  {
+   "name": "PRINCE2",
+   "aliases": []
+  },
+  {
+   "name": "ITIL",
+   "aliases": []
+  },
+  {
+   "name": "Figma",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Sketch",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Adobe XD",
+   "aliases": []
+  },
+  {
+   "name": "Photoshop",
+   "aliases": []
+  },
+  {
+   "name": "Illustrator",
+   "aliases": []
+  },
+  {
+   "name": "InDesign",
+   "aliases": []
+  },
+  {
+   "name": "After Effects",
+   "aliases": []
+  },
+  {
+   "name": "UX",
+   "aliases": [
+    "User Experience"
+   ]
+  },
+  {
+   "name": "UI",
+   "aliases": [
+    "User Interface"
+   ]
+  },
+  {
+   "name": "UX Research",
+   "aliases": []
+  },
+  {
+   "name": "Wireframing",
+   "aliases": []
+  },
+  {
+   "name": "Prototyping",
+   "aliases": []
+  },
+  {
+   "name": "Design Systems",
+   "aliases": []
+  },
+  {
+   "name": "Usability Testing",
+   "aliases": []
+  },
+  {
+   "name": "Salesforce",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "HubSpot",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "SAP",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Workday",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "ServiceNow",
+   "aliases": []
+  },
+  {
+   "name": "Zendesk",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Intercom",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Marketo",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Google Analytics",
+   "aliases": []
+  },
+  {
+   "name": "SEO",
+   "aliases": []
+  },
+  {
+   "name": "SEM",
+   "aliases": []
+  },
+  {
+   "name": "Content Marketing",
+   "aliases": []
+  },
+  {
+   "name": "Email Marketing",
+   "aliases": []
+  },
+  {
+   "name": "Social Media",
+   "aliases": []
+  },
+  {
+   "name": "Copywriting",
+   "aliases": []
+  },
+  {
+   "name": "CRM",
+   "aliases": []
+  },
+  {
+   "name": "Customer Support",
+   "aliases": []
+  },
+  {
+   "name": "Customer Success",
+   "aliases": []
+  },
+  {
+   "name": "Account Management",
+   "aliases": []
+  },
+  {
+   "name": "Business Development",
+   "aliases": []
+  },
+  {
+   "name": "Sales",
+   "aliases": []
+  },
+  {
+   "name": "Lead Generation",
+   "aliases": []
+  },
+  {
+   "name": "Negotiation",
+   "aliases": []
+  },
+  {
+   "name": "Cybersecurity",
+   "aliases": [
+    "Information Security",
+    "InfoSec"
+   ]
+  },
+  {
+   "name": "Penetration Testing",
+   "aliases": [
+    "Pentesting"
+   ]
+  },
+  {
+   "name": "SIEM",
+   "aliases": []
+  },
+  {
+   "name": "SOC",
+   "aliases": []
+  },
+  {
+   "name": "IAM",
+   "aliases": []
+  },
+  {
+   "name": "Zero Trust",
+   "aliases": []
+  },
+  {
+   "name": "Cryptography",
+   "aliases": []
+  },
+  {
+   "name": "OWASP",
+   "aliases": []
+  },
+  {
+   "name": "ISO 27001",
+   "aliases": []
+  },
+  {
+   "name": "SOC 2",
+   "aliases": []
+  },
+  {
+   "name": "GDPR",
+   "aliases": []
+  },
+  {
+   "name": "PCI DSS",
+   "aliases": []
+  },
+  {
+   "name": "Network Security",
+   "aliases": []
+  },
+  {
+   "name": "Firewalls",
+   "aliases": []
+  },
+  {
+   "name": "Burp Suite",
+   "aliases": []
+  },
+  {
+   "name": "Wireshark",
+   "aliases": []
+  },
+  {
+   "name": "Nmap",
+   "aliases": []
+  },
+  {
+   "name": "Networking",
+   "aliases": []
+  },
+  {
+   "name": "TCP/IP",
+   "aliases": []
+  },
+  {
+   "name": "DNS",
+   "aliases": []
+  },
+  {
+   "name": "HTTP",
+   "aliases": []
+  },
+  {
+   "name": "Embedded Systems",
+   "aliases": []
+  },
+  {
+   "name": "RTOS",
+   "aliases": []
+  },
+  {
+   "name": "FPGA",
+   "aliases": []
+  },
+  {
+   "name": "Verilog",
+   "aliases": []
+  },
+  {
+   "name": "VHDL",
+   "aliases": []
+  },
+  {
+   "name": "IoT",
+   "aliases": []
+  },
+  {
+   "name": "Robotics",
+   "aliases": []
+  },
+  {
+   "name": "ROS",
+   "aliases": []
+  },
+  {
+   "name": "CAD",
+   "aliases": []
+  },
+  {
+   "name": "AutoCAD",
+   "aliases": []
+  },
+  {
+   "name": "SolidWorks",
+   "aliases": []
+  },
+  {
+   "name": "Blockchain",
+   "aliases": []
+  },
+  {
+   "name": "Web3",
+   "aliases": []
+  },
+  {
+   "name": "Unity",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Unreal Engine",
+   "aliases": []
+  },
+  {
+   "name": "Game Development",
+   "aliases": []
+  },
+  {
+   "name": "Accounting",
+   "aliases": []
+  },
+  {
+   "name": "Financial Analysis",
+   "aliases": []
+  },
+  {
+   "name": "Financial Modeling",
+   "aliases": []
+  },
+  {
+   "name": "Bookkeeping",
+   "aliases": []
+  },
+  {
+   "name": "QuickBooks",
+   "aliases": []
+  },
+  {
+   "name": "Xero",
+   "aliases": [],
+   "cs": true
+  },
+  {
+   "name": "Budgeting",
+   "aliases": []
+  },
+  {
+   "name": "Forecasting",
+   "aliases": []
+  },
+  {
+   "name": "Payroll",
+   "aliases": []
+  },
+  {
+   "name": "Recruiting",
+   "aliases": []
+  },
+  {
+   "name": "Talent Acquisition",
+   "aliases": []
+  },
+  {
+   "name": "HR",
+   "aliases": [
+    "Human Resources"
+   ]
+  },
+  {
+   "name": "Operations",
+   "aliases": []
+  },
+  {
+   "name": "Supply Chain",
+   "aliases": []
+  },
+  {
+   "name": "Logistics",
+   "aliases": []
+  },
+  {
+   "name": "Procurement",
+   "aliases": []
+  },
+  {
+   "name": "Communication",
+   "aliases": []
+  },
+  {
+   "name": "Leadership",
+   "aliases": []
+  },
+  {
+   "name": "Mentoring",
+   "aliases": []
+  },
+  {
+   "name": "Technical Writing",
+   "aliases": []
+  },
+  {
+   "name": "Documentation",
+   "aliases": []
+  }
+ ]
+}

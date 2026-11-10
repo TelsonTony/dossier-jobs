@@ -1,0 +1,19 @@
+{
+  "_help": "Pipeline settings. See USER_MANUAL.md, section 'Pipeline settings'. Never put keys here; keys go in GitHub Actions secrets.",
+  "runs_per_day": 4,
+  "page_cap": 5,
+  "api_page_cap": {"arbeitnow": 5, "themuse": 10, "adzuna": 2, "jooble": 2, "careerjet": 2, "reed": 2, "usajobs": 2, "findwork": 5},
+  "parallel_boards": 6,
+  "smartrecruiters_detail_cap": 150,
+  "remotive_limit": 500,
+  "target_countries": [],
+  "adzuna_countries": ["gb", "in", "de", "us"],
+  "jooble_locations": [""],
+  "careerjet_locales": ["en_GB"],
+  "careerjet_endpoint": "",
+  "tier3_keywords": ["software", "engineer", "developer", "tester", "analyst"],
+  "max_age_days": 120,
+  "closed_retention_days": 14,
+  "sponsor_check": true,
+  "disabled_providers": ["themuse"]
+}

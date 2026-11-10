@@ -1,0 +1,4 @@
+# US employers with recent H-1B / LCA filings, one company name per line.
+# Build this list from the public DOL LCA disclosure file or the USCIS H-1B Employer Data Hub
+# with:  python tools/build_us_sponsors.py <downloaded-file.xlsx|csv>
+# A match only means "Company holds a sponsor licence" style signal, never that a role is sponsored.

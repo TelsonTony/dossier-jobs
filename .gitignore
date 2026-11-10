@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+site/
+site.tmp/
+.venv/
+*.key
+signing_key*.txt
+.env
