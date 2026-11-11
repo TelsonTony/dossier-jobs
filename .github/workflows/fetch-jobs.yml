@@ -10,7 +10,7 @@ on:
   workflow_dispatch: {}
 
 permissions:
-  contents: write   # needed only to push the gh-pages branch
+  contents: read   # needed only to push the gh-pages branch
 
 concurrency:
   group: fetch-jobs
@@ -19,6 +19,8 @@ concurrency:
 jobs:
   fetch:
     runs-on: ubuntu-latest
+    permissions: 
+      contents: write
     timeout-minutes: 45
     steps:
       # Actions are pinned to commit hashes. Dependabot keeps them current.
