@@ -263,3 +263,54 @@ def test_end_to_end_publishes_signed_files(tmp_path: Path, monkeypatch):
 def test_refuses_to_run_unsigned(tmp_path, monkeypatch):
     monkeypatch.delenv("DOSSIER_SIGNING_KEY", raising=False)
     assert pipeline_main.main(["--site", str(tmp_path / "s")]) == 2
+
+
+# ---- GitLab support ---------------------------------------------------------------------
+
+def test_fresh_start_version_is_above_any_earlier_counter(tmp_path, monkeypatch):
+    """A run without previous state (e.g. first GitLab run) must still beat phones' stored version."""
+    key = SigningKey.generate()
+    monkeypatch.setenv("DOSSIER_SIGNING_KEY", base64.b64encode(bytes(key)).decode())
+    monkeypatch.setattr(pipeline_main, "ats_adapters", lambda: {t: (lambda c, ctx: []) for t in
+                                                                ("greenhouse", "lever", "ashby", "workable",
+                                                                 "smartrecruiters", "custom")})
+    monkeypatch.setattr(pipeline_main, "api_adapters", lambda: {})
+    monkeypatch.setattr(pipeline_main, "refresh_uk_register", lambda state, log: None)
+    site = tmp_path / "site"
+    assert pipeline_main.main(["--site", str(site)]) == 0
+    v = json.loads((site / "manifest.json").read_bytes())["version"]
+    assert v > 20_000_000  # minutes since 1970
+    # with state (the GitHub branch, or the state downloaded on GitLab) it counts up as before
+    from pipeline.publish import read_state
+    assert read_state(site)["version"] == v
+
+
+def test_existing_counter_keeps_counting(tmp_path):
+    from pipeline.publish import write_site
+    state = {"version": 6, "index_hash": "old"}
+    m = write_site(tmp_path / "s", [job()], {}, [], [], state, "2026-11-14T00:00:00Z", {}, None, "k1")
+    assert m["version"] == 7  # GitHub history unaffected
+
+
+def test_fetch_previous_state_never_fails(tmp_path, monkeypatch):
+    import sys as _sys
+    from tools import fetch_previous_state as fps
+    monkeypatch.setattr(_sys, "argv", ["x", "", str(tmp_path / "prev")])
+    assert fps.main() == 0  # no address: start fresh
+
+    class Boom:
+        def __init__(self, *a, **k):
+            raise ConnectionError("offline")
+    monkeypatch.setattr(fps.requests, "get", Boom)
+    monkeypatch.setattr(_sys, "argv", ["x", "https://example.gitlab.io/dossier-jobs", str(tmp_path / "prev")])
+    assert fps.main() == 0
+    assert not (tmp_path / "prev" / "state" / "state.json.gz").exists()
+
+
+def test_gitlab_ci_file_is_valid():
+    import yaml
+    d = yaml.safe_load(Path(__file__).resolve().parent.parent.joinpath(".gitlab-ci.yml").read_text())
+    assert d["pages"]["artifacts"]["paths"] == ["public"]
+    assert "pipeline.main --site public" in " ".join(d["pages"]["script"])
+    rules = d["pages"]["rules"][0]["if"]
+    assert "schedule" in rules and "merge_request" not in rules  # secrets never run for MRs

@@ -14,6 +14,7 @@ import gzip
 import hashlib
 import json
 import shutil
+import time
 from pathlib import Path
 from typing import Any
 
@@ -84,6 +85,11 @@ def write_site(
     version = int(state.get("version") or 0)
     if content_hash != state.get("index_hash"):
         version += 1
+    if not state.get("index_hash"):
+        # No memory of a previous run (first run, new host such as GitLab, or the previous state
+        # could not be downloaded). Phones only accept a higher version than they already have, so
+        # start from the minutes since 1970: always above any earlier counter, and later runs +1.
+        version = max(version, int(time.time() // 60))
     state["version"] = version
     state["index_hash"] = content_hash
 

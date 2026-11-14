@@ -6,6 +6,9 @@ public job APIs, and publishes signed files on GitHub Pages. It never sees anyon
 each phone filters the jobs locally.
 
 > Setup steps are in [`../USER_MANUAL.md`](../USER_MANUAL.md), Part 1. This README is the reference.
+>
+> Runs on **GitHub** (`.github/workflows/fetch-jobs.yml`, publishes to the `gh-pages` branch) or **GitLab**
+> (`.gitlab-ci.yml`, job `pages`, publishes to GitLab Pages; see USER_MANUAL.md Part 7). Same code, same signed files.
 
 ## What it publishes (gh-pages branch → GitHub Pages)
 

@@ -1,0 +1,55 @@
+# GitLab version of the Dossier job pipeline (same Python code as the GitHub workflow).
+#
+# Setup (USER_MANUAL.md, Part 7):
+#   * Settings → CI/CD → Variables: DOSSIER_SIGNING_KEY (Masked, Protected) and any Tier 3 API keys.
+#   * Build → Pipeline schedules: e.g. "17 */6 * * *" on branch main.
+#   * Deploy → Pages: keep the site visible to Everyone (the app downloads it without a login).
+#
+# The "pages" job runs only for schedules and manual runs ("Run pipeline"), never for merge
+# requests, so secrets are never exposed to code from a fork. Its public/ folder becomes the
+# GitLab Pages site: manifest.json, manifest.sig, jobs_index.json.gz, desc/, state/.
+
+stages:
+  - test
+  - publish
+
+default:
+  image: python:3.12-slim
+  interruptible: true
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+cache:
+  key: pip
+  paths:
+    - .cache/pip
+
+tests:
+  stage: test
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "merge_request_event"
+  timeout: 10m
+  script:
+    - pip install -r requirements-dev.txt
+    - python -m pytest -q
+    - pip install pip-audit==2.9.0
+    - pip-audit -r requirements.txt
+
+pages:
+  stage: publish
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web"
+  interruptible: false
+  resource_group: fetch-jobs   # never two runs at once
+  timeout: 45m
+  script:
+    - pip install -r requirements.txt
+    - python tools/fetch_previous_state.py "$CI_PAGES_URL" previous
+    - python -m pipeline.main --site public --previous previous
+    - cat public/health_report.md
+  artifacts:
+    paths:
+      - public
+    expire_in: 7 days

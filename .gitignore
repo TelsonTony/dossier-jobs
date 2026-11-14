@@ -22,3 +22,16 @@ venv/
 *.key
 results/
 logs/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*signing*key*
+results/
+logs/
