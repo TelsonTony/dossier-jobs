@@ -28,6 +28,7 @@ from .publish import read_state, write_site
 from .registry import public_view, registry
 from .sign import load_signing_key, public_key_b64
 from .sponsor import apply_signals, refresh_uk_register
+from .tier3 import TIER3_WORKBOOK, load_tier3
 
 CONFIG = Path(__file__).resolve().parent / "config.json"
 SECRET_NAMES = ["ADZUNA_APP_ID", "ADZUNA_APP_KEY", "JOOBLE_API_KEY", "CAREERJET_API_KEY", "REED_API_KEY",
@@ -68,6 +69,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--site", default="site", help="output folder (the gh-pages checkout)")
     parser.add_argument("--previous", default=None, help="folder holding the previous run (default: --site)")
     parser.add_argument("--workbook", default=str(WORKBOOK))
+    parser.add_argument("--tier3-workbook", default=str(TIER3_WORKBOOK))
+    parser.add_argument("--tier3", action="store_true",
+                        help="also fetch Tier 3 (manual runs). Same as env DOSSIER_RUN_TIER3=true")
     parser.add_argument("--only", default="", help="comma list: tier1, tier2, tier3 or provider ids (testing)")
     parser.add_argument("--allow-unsigned", action="store_true", help="local testing only; the app rejects unsigned data")
     args = parser.parse_args(argv)
@@ -164,6 +168,18 @@ def main(argv: list[str] | None = None) -> int:
                               total, msg, boards=len(rows)))
 
     # ---- Tier 2 and 3: APIs ---------------------------------------------------------------
+    # Tier 3 runs only on manual workflow runs; its on/off switches come from the Tier 3 workbook.
+    run_tier3 = args.tier3 or os.environ.get("DOSSIER_RUN_TIER3", "").strip().lower() == "true"
+    tier3_ids = [e["provider_id"] for e in reg if e["tier"] == 3]
+    tier3_on: dict[str, bool] = {}
+    if run_tier3:
+        tier3_on, t3_warnings = load_tier3(tier3_ids, Path(args.tier3_workbook))
+        for w in t3_warnings:
+            log(f"Tier 3 workbook: {w}")
+        log("Tier 3: manual run, sites on: " + (", ".join(p for p, on in tier3_on.items() if on) or "none"))
+    else:
+        log("Tier 3: skipped (runs only on manual runs); keeping jobs from the last manual run")
+
     for provider_id, fetch in api_adapters().items():
         entry = reg_by_id[provider_id]
         tier = entry["tier"]
@@ -171,6 +187,16 @@ def main(argv: list[str] | None = None) -> int:
             continue
         if not entry["enabled"]:
             health.append(_health(provider_id, entry["name"], tier, "provider", "Paused", message="Disabled in config"))
+            continue
+        if tier == 3 and not run_tier3:
+            health.append(_health(provider_id, entry["name"], tier, "provider", "Paused",
+                                  message="Runs only on manual runs. Showing jobs from the last manual run.",
+                                  last_success_at=last_success.get(provider_id)))
+            continue
+        if tier == 3 and not tier3_on.get(provider_id):
+            health.append(_health(provider_id, entry["name"], tier, "provider", "Paused",
+                                  message="enabled = FALSE in the Tier 3 workbook"))
+            paused.add(provider_id)  # switched off: its jobs leave the index
             continue
         cd = _parse_time(cooldowns.get(provider_id))
         if cd and cd > now:
@@ -203,7 +229,7 @@ def main(argv: list[str] | None = None) -> int:
                 cooldowns[provider_id] = tomorrow.isoformat().replace("+00:00", "Z")
                 msg = "Paused until the quota resets. Showing jobs from the last good run."
             elif isinstance(exc, http.MissingKey):
-                msg = "Add the key as a GitHub Actions secret: " + ", ".join(entry.get("secrets") or [])
+                msg = "Add the key as a GitHub Actions secret / GitLab CI variable: " + ", ".join(entry.get("secrets") or [])
             elif isinstance(exc, http.InvalidKey):
                 msg = "The provider rejected the key; replace the secret"
             health.append(_health(provider_id, entry["name"], tier, "provider", exc.status, 0, msg,

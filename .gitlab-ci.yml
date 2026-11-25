@@ -40,7 +40,11 @@ tests:
 pages:
   stage: publish
   rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web"
+    # Tier 3 (data/APIKey_Based_Search.xlsx) runs only on manual runs ("Run pipeline").
+    - if: $CI_PIPELINE_SOURCE == "web"
+      variables:
+        DOSSIER_RUN_TIER3: "true"
+    - if: $CI_PIPELINE_SOURCE == "schedule"
   interruptible: false
   resource_group: fetch-jobs   # never two runs at once
   timeout: 45m

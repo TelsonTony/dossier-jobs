@@ -1,4 +1,4 @@
-"""Reads the Companies sheet of data/Dossier_ATS_Company_List.xlsx.
+"""Reads the Companies sheet of data/Workflow.xlsx.
 
 Columns are found by header name, so they can be reordered. The URL is always built in
 code from ats_type + slug (the api_url column is a formula kept for people to check;
@@ -13,7 +13,7 @@ from openpyxl import load_workbook
 from .adapters import Company
 
 KNOWN_TYPES = {"greenhouse", "lever", "ashby", "workable", "smartrecruiters", "custom", "unsupported"}
-WORKBOOK = Path(__file__).resolve().parent.parent / "data" / "Dossier_ATS_Company_List.xlsx"
+WORKBOOK = Path(__file__).resolve().parent.parent / "data" / "Workflow.xlsx"
 
 
 def _truthy(value: object) -> bool:

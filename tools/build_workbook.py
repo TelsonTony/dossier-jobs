@@ -1,4 +1,4 @@
-"""Builds data/Dossier_ATS_Company_List.xlsx (How to Use, Companies, ATS Endpoints).
+"""Builds data/Workflow.xlsx (How to Use, Companies, ATS Endpoints).
 
 Run once to create the workbook; afterwards edit the workbook in Excel directly.
     python tools/build_workbook.py            # refuses to overwrite an existing workbook
@@ -13,7 +13,7 @@ from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.worksheet.datavalidation import DataValidation
 
-OUT = Path(__file__).resolve().parent.parent / "data" / "Dossier_ATS_Company_List.xlsx"
+OUT = Path(__file__).resolve().parent.parent / "data" / "Workflow.xlsx"
 
 V_SEVERAL = "Listed by several tools; test once"
 V_ONE = "Listed by one tool; test once"

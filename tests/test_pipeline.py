@@ -20,6 +20,8 @@ from pipeline.normalize import experience_hint, make_job, strip_html, to_iso
 from pipeline.sign import sign_manifest, verify_manifest
 from pipeline.skills import extract_skills
 from pipeline.sponsor import mentioned_in_jd
+from pipeline.tier3 import load_tier3
+from openpyxl import Workbook
 
 CO = Company("Stripe", "greenhouse", "stripe")
 
@@ -208,8 +210,41 @@ def test_workbook_loads_51_companies():
     counts = {}
     for c in companies:
         counts[c.ats_type] = counts.get(c.ats_type, 0) + 1
-    assert counts == {"greenhouse": 15, "lever": 17, "ashby": 17, "workable": 2}
+    assert counts == {"greenhouse": 18, "lever": 12, "ashby": 19, "workable": 2}
+    assert sum(c.enabled for c in companies) == 45
     assert greenhouse.build_url("stripe") == "https://boards-api.greenhouse.io/v1/boards/stripe/jobs?content=true"
+
+
+TIER3_IDS = ["adzuna", "jooble", "careerjet", "reed", "usajobs", "findwork"]
+
+
+def test_tier3_workbook_lists_every_tier3_site():
+    on, warnings = load_tier3(TIER3_IDS)
+    assert set(on) == set(TIER3_IDS) and not warnings
+
+
+def test_tier3_workbook_rules(tmp_path):
+    p = tmp_path / "t3.xlsx"
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Tier3"
+    ws.append(["provider_id", "name", "enabled"])
+    ws.append(["adzuna", "Adzuna", True])
+    ws.append(["reed", "Reed", False])
+    ws.append(["jooble", "Jooble", None])      # empty = off
+    ws.append(["nosuch", "X", True])           # unknown: warned, ignored
+    ws.append(["adzuna", "Adzuna again", False])  # duplicate: warned, first row wins
+    wb.save(p)
+    on, warnings = load_tier3(TIER3_IDS, p)
+    assert on == {"adzuna": True, "reed": False, "jooble": False, "careerjet": False, "usajobs": False,
+                  "findwork": False}
+    assert any("nosuch" in w for w in warnings) and any("duplicate" in w for w in warnings)
+    assert any("'careerjet'" in w for w in warnings)
+
+
+def test_tier3_missing_workbook_means_all_off(tmp_path):
+    on, warnings = load_tier3(TIER3_IDS, tmp_path / "missing.xlsx")
+    assert not any(on.values()) and warnings
 
 
 # ---- end to end (adapters stubbed, no network) ----------------------------------------
@@ -219,7 +254,7 @@ def test_end_to_end_publishes_signed_files(tmp_path: Path, monkeypatch):
     monkeypatch.setenv("DOSSIER_SIGNING_KEY", base64.b64encode(bytes(key)).decode())
 
     def fake_company(company, ctx):
-        if company.slug == "netflix":
+        if company.slug == "outreach":
             raise http.BoardNotFound("HTTP 404")
         return [job(provider=company.ats_type, provider_job_id=f"{company.slug}-1", company=company.company_name,
                     board=company.slug, apply_url=f"https://example.com/{company.slug}/1")]
@@ -233,7 +268,7 @@ def test_end_to_end_publishes_signed_files(tmp_path: Path, monkeypatch):
     monkeypatch.setattr(pipeline_main, "api_adapters", lambda: {"adzuna": fake_api})
     monkeypatch.setattr(pipeline_main, "refresh_uk_register", lambda state, log: None)
     site = tmp_path / "site"
-    assert pipeline_main.main(["--site", str(site)]) == 0
+    assert pipeline_main.main(["--site", str(site), "--tier3"]) == 0
 
     manifest = (site / "manifest.json").read_bytes()
     pub = base64.b64encode(bytes(key.verify_key)).decode()
@@ -242,11 +277,12 @@ def test_end_to_end_publishes_signed_files(tmp_path: Path, monkeypatch):
     index_bytes = (site / "jobs_index.json.gz").read_bytes()
     assert hashlib.sha256(index_bytes).hexdigest() == m["index"]["sha256"]
     index = json.loads(gzip.decompress(index_bytes))
-    assert m["open_count"] == 50 and "description" not in index["jobs"][0]
+    assert m["open_count"] == 44 and "description" not in index["jobs"][0]  # 45 enabled, 1 not found
     first = index["jobs"][0]
     assert hashlib.sha256((site / first["desc"]).read_bytes()).hexdigest() == first["desc_sha256"]
     statuses = {s["id"]: s for s in m["sources"]}
-    assert statuses["lever/netflix"]["status"] == "Board not found" and statuses["lever/netflix"]["needs_review"]
+    assert statuses["lever/outreach"]["status"] == "Board not found" and statuses["lever/outreach"]["needs_review"]
+    assert statuses["lever/netflix"]["status"] == "Paused"
     assert statuses["adzuna"]["status"] == "Missing key"
     # No personal data and no keys in published files
     blob = b"".join(p.read_bytes() for p in site.rglob("*") if p.is_file())
@@ -256,8 +292,54 @@ def test_end_to_end_publishes_signed_files(tmp_path: Path, monkeypatch):
     v1 = m["version"]
     import time
     time.sleep(1.1)  # make sure run_at differs
-    assert pipeline_main.main(["--site", str(site)]) == 0
+    assert pipeline_main.main(["--site", str(site), "--tier3"]) == 0
     assert json.loads((site / "manifest.json").read_bytes())["version"] == v1
+
+
+def test_tier3_only_on_manual_runs_and_kept_between(tmp_path: Path, monkeypatch):
+    key = SigningKey.generate()
+    monkeypatch.setenv("DOSSIER_SIGNING_KEY", base64.b64encode(bytes(key)).decode())
+    monkeypatch.delenv("DOSSIER_RUN_TIER3", raising=False)
+    calls = []
+
+    def fake_adzuna(ctx):
+        calls.append(1)
+        return [job(provider="adzuna", provider_job_id="a-1", company="Acme", tier=3,
+                    apply_url="https://example.com/adzuna/1")]
+
+    monkeypatch.setattr(pipeline_main, "ats_adapters", lambda: {t: (lambda c, ctx: []) for t in
+                                                                ("greenhouse", "lever", "ashby", "workable",
+                                                                 "smartrecruiters", "custom")})
+    monkeypatch.setattr(pipeline_main, "api_adapters", lambda: {"adzuna": fake_adzuna})
+    monkeypatch.setattr(pipeline_main, "refresh_uk_register", lambda state, log: None)
+    site = tmp_path / "site"
+
+    def run(*extra):
+        assert pipeline_main.main(["--site", str(site), *extra]) == 0
+        m = json.loads((site / "manifest.json").read_bytes())
+        return m, {s["id"]: s for s in m["sources"]}
+
+    # Manual run (env set by the workflow): Tier 3 fetched.
+    monkeypatch.setenv("DOSSIER_RUN_TIER3", "true")
+    m, st = run()
+    assert calls == [1] and st["adzuna"]["status"] == "Succeeded" and m["open_count"] == 1
+
+    # Scheduled run: Tier 3 not called, its job kept.
+    monkeypatch.setenv("DOSSIER_RUN_TIER3", "false")
+    m, st = run()
+    assert calls == [1] and st["adzuna"]["status"] == "Paused" and "manual" in st["adzuna"]["message"]
+    assert m["open_count"] == 1
+
+    # Manual run with adzuna switched off in the sheet: not called, its job removed.
+    t3 = tmp_path / "t3.xlsx"
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Tier3"
+    ws.append(["provider_id", "enabled"])
+    ws.append(["adzuna", False])
+    wb.save(t3)
+    m, st = run("--tier3", "--tier3-workbook", str(t3))
+    assert calls == [1] and st["adzuna"]["status"] == "Paused" and m["open_count"] == 0
 
 
 def test_refuses_to_run_unsigned(tmp_path, monkeypatch):
@@ -312,5 +394,9 @@ def test_gitlab_ci_file_is_valid():
     d = yaml.safe_load(Path(__file__).resolve().parent.parent.joinpath(".gitlab-ci.yml").read_text())
     assert d["pages"]["artifacts"]["paths"] == ["public"]
     assert "pipeline.main --site public" in " ".join(d["pages"]["script"])
-    rules = d["pages"]["rules"][0]["if"]
-    assert "schedule" in rules and "merge_request" not in rules  # secrets never run for MRs
+    rules = d["pages"]["rules"]
+    conditions = " ".join(r["if"] for r in rules)
+    assert "schedule" in conditions and "merge_request" not in conditions  # secrets never run for MRs
+    # Tier 3 only on manual runs ("web"), never on schedules
+    tier3 = [r for r in rules if (r.get("variables") or {}).get("DOSSIER_RUN_TIER3") == "true"]
+    assert [r["if"] for r in tier3] == ['$CI_PIPELINE_SOURCE == "web"']

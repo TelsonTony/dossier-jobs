@@ -29,7 +29,7 @@ The app holds the public key and rejects anything that fails.
 ```
 .github/workflows/fetch-jobs.yml   schedule + manual run, signs, pushes gh-pages
 .github/workflows/tests.yml        unit tests + pip-audit on every push / PR (no secrets)
-data/Dossier_ATS_Company_List.xlsx company list (Companies sheet is read by the job)
+data/Workflow.xlsx company list (Companies sheet is read by the job)
 data/skills.json                   skills dictionary (same file ships in the app)
 data/sponsors_us.txt               optional US sponsor employer names
 pipeline/                          adapters, normalize, dedupe, expire, sponsor, sign, publish

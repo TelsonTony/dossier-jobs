@@ -49,6 +49,8 @@ jobs:
         env:
           DOSSIER_SIGNING_KEY: ${{ secrets.DOSSIER_SIGNING_KEY }}
           DOSSIER_SIGNING_KEY_ID: ${{ vars.DOSSIER_SIGNING_KEY_ID }}
+          # Tier 3 (data/APIKey_Based_Search.xlsx) runs only when started with "Run workflow".
+          DOSSIER_RUN_TIER3: ${{ github.event_name == 'workflow_dispatch' }}
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
           JOOBLE_API_KEY: ${{ secrets.JOOBLE_API_KEY }}
